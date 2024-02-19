@@ -11,6 +11,7 @@ namespace WinFormsApp1
         private string openFilePath;
         private const string filePath = @"C:\Users\pakan\Desktop\Универ\6 семак\Теория формальных языков и компиляторов\WinFormsApp1\Help.html";
  
+
         public Compiler()
         {
             InitializeComponent();
