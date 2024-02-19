@@ -23,4 +23,8 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Readme_img\" />
+  </ItemGroup>
+
 </Project>
