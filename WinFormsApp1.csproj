@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Readme_img\" />
+    <Folder Include="README_images\" />
   </ItemGroup>
 
 </Project>
