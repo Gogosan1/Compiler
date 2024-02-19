@@ -45,8 +45,6 @@ namespace WinFormsApp1
                         {
                             richTextBox.Text = reader.ReadToEnd();
                         }
-                        // он унпньелс ядекюрэ янашрхе, мюбеьюрэ
-                        // ецн мю лернд OpenFile ХГ ЙКЮЯЯЮ fileLogic
                         PrintFileName();
                     }
                 }

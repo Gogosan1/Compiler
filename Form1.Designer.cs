@@ -396,6 +396,7 @@
             richTextBox1.Dock = DockStyle.Fill;
             richTextBox1.Location = new Point(3, 260);
             richTextBox1.Name = "richTextBox1";
+            richTextBox1.ReadOnly = true;
             richTextBox1.Size = new Size(978, 184);
             richTextBox1.TabIndex = 12;
             richTextBox1.Text = "";
