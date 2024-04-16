@@ -174,7 +174,7 @@ P =
 Текст с ошибками
 <img src="/README_images/many_errors.png">
 Исправление
-<img src="/README_images/arter_nitralization.png">
+<img src="/README_images/afrer_nitralization.png">
 ## Лабораторная работа №5: Включение семантики в анализатор. Создание внутренней формы представления программы
 
 ## Лабораторная работа №6: Реализация алгоритма поиска подстрок с помощью регулярных выражений
