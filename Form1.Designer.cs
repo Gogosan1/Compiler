@@ -69,16 +69,36 @@
             start = new ToolStripButton();
             info = new ToolStripButton();
             createdBy = new ToolStripButton();
-            richTextBox1 = new RichTextBox();
-            richTextBox = new RichTextBox();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            tableLayoutPanel1 = new TableLayoutPanel();
+            input = new RichTextBox();
+            splitContainer1 = new SplitContainer();
+            tabControl2 = new TabControl();
+            parser1 = new TabPage();
+            LexerDataGrid = new DataGridView();
+            number = new DataGridViewTextBoxColumn();
+            code = new DataGridViewTextBoxColumn();
+            typeOfLexeme = new DataGridViewTextBoxColumn();
+            lexeme = new DataGridViewTextBoxColumn();
+            placement = new DataGridViewTextBoxColumn();
+            scanner = new TabPage();
+            ParserDataGrid = new DataGridView();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
+            tabControl2.SuspendLayout();
+            parser1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)LexerDataGrid).BeginInit();
+            scanner.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ParserDataGrid).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -391,68 +411,175 @@
             createdBy.Text = "О программе";
             createdBy.Click += createdBy_Click;
             // 
-            // richTextBox1
-            // 
-            richTextBox1.Dock = DockStyle.Fill;
-            richTextBox1.Location = new Point(3, 260);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.ReadOnly = true;
-            richTextBox1.Size = new Size(978, 184);
-            richTextBox1.TabIndex = 12;
-            richTextBox1.Text = "";
-            // 
-            // richTextBox
-            // 
-            richTextBox.Dock = DockStyle.Fill;
-            richTextBox.Location = new Point(3, 3);
-            richTextBox.Name = "richTextBox";
-            richTextBox.Size = new Size(964, 212);
-            richTextBox.TabIndex = 1;
-            richTextBox.Text = "";
-            richTextBox.TextChanged += richTextBox_TextChanged;
-            richTextBox.KeyDown += richTextBox_KeyDown;
-            // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(3, 3);
+            tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(978, 251);
+            tabControl1.Size = new Size(984, 221);
             tabControl1.TabIndex = 10;
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(richTextBox);
+            tabPage1.Controls.Add(input);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(970, 218);
+            tabPage1.Size = new Size(976, 188);
             tabPage1.TabIndex = 0;
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel1
+            // input
             // 
-            tableLayoutPanel1.ColumnCount = 1;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(richTextBox1, 0, 1);
-            tableLayoutPanel1.Controls.Add(tabControl1, 0, 0);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 75);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 57.49441F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 42.5055923F));
-            tableLayoutPanel1.Size = new Size(984, 447);
-            tableLayoutPanel1.TabIndex = 13;
+            input.Dock = DockStyle.Fill;
+            input.Location = new Point(3, 3);
+            input.Name = "input";
+            input.Size = new Size(970, 182);
+            input.TabIndex = 1;
+            input.Text = "";
+            input.TextChanged += richTextBox_TextChanged;
+            input.KeyDown += richTextBox_KeyDown;
+            // 
+            // splitContainer1
+            // 
+            splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.Location = new Point(0, 75);
+            splitContainer1.Name = "splitContainer1";
+            splitContainer1.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.Controls.Add(tabControl1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.Controls.Add(tabControl2);
+            splitContainer1.Size = new Size(984, 447);
+            splitContainer1.SplitterDistance = 221;
+            splitContainer1.TabIndex = 13;
+            // 
+            // tabControl2
+            // 
+            tabControl2.Controls.Add(parser1);
+            tabControl2.Controls.Add(scanner);
+            tabControl2.Dock = DockStyle.Fill;
+            tabControl2.Location = new Point(0, 0);
+            tabControl2.Name = "tabControl2";
+            tabControl2.SelectedIndex = 0;
+            tabControl2.Size = new Size(984, 222);
+            tabControl2.TabIndex = 1;
+            // 
+            // parser1
+            // 
+            parser1.Controls.Add(ParserDataGrid);
+            parser1.Location = new Point(4, 29);
+            parser1.Name = "parser1";
+            parser1.Padding = new Padding(3);
+            parser1.Size = new Size(976, 189);
+            parser1.TabIndex = 0;
+            parser1.Text = "Парсер";
+            parser1.UseVisualStyleBackColor = true;
+            // 
+            // LexerDataGrid
+            // 
+            LexerDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            LexerDataGrid.Columns.AddRange(new DataGridViewColumn[] { number, code, typeOfLexeme, lexeme, placement });
+            LexerDataGrid.Dock = DockStyle.Fill;
+            LexerDataGrid.Location = new Point(3, 3);
+            LexerDataGrid.Name = "LexerDataGrid";
+            LexerDataGrid.RowHeadersWidth = 51;
+            LexerDataGrid.Size = new Size(970, 183);
+            LexerDataGrid.TabIndex = 0;
+            // 
+            // number
+            // 
+            number.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            number.HeaderText = "№";
+            number.MinimumWidth = 6;
+            number.Name = "number";
+            // 
+            // code
+            // 
+            code.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            code.HeaderText = "условный код";
+            code.MinimumWidth = 6;
+            code.Name = "code";
+            // 
+            // typeOfLexeme
+            // 
+            typeOfLexeme.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            typeOfLexeme.HeaderText = "тип лексемы";
+            typeOfLexeme.MinimumWidth = 6;
+            typeOfLexeme.Name = "typeOfLexeme";
+            // 
+            // lexeme
+            // 
+            lexeme.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            lexeme.HeaderText = "лексема";
+            lexeme.MinimumWidth = 6;
+            lexeme.Name = "lexeme";
+            // 
+            // placement
+            // 
+            placement.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            placement.HeaderText = "расположение";
+            placement.MinimumWidth = 6;
+            placement.Name = "placement";
+            // 
+            // scanner
+            // 
+            scanner.Controls.Add(LexerDataGrid);
+            scanner.Location = new Point(4, 29);
+            scanner.Name = "scanner";
+            scanner.Padding = new Padding(3);
+            scanner.Size = new Size(976, 189);
+            scanner.TabIndex = 1;
+            scanner.Text = "Сканер";
+            scanner.UseVisualStyleBackColor = true;
+            // 
+            // ParserDataGrid
+            // 
+            ParserDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ParserDataGrid.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn3 });
+            ParserDataGrid.Dock = DockStyle.Fill;
+            ParserDataGrid.Location = new Point(3, 3);
+            ParserDataGrid.Name = "ParserDataGrid";
+            ParserDataGrid.RowHeadersWidth = 51;
+            ParserDataGrid.Size = new Size(970, 183);
+            ParserDataGrid.TabIndex = 1;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewTextBoxColumn1.FillWeight = 15F;
+            dataGridViewTextBoxColumn1.HeaderText = "№";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewTextBoxColumn5.FillWeight = 50F;
+            dataGridViewTextBoxColumn5.HeaderText = "местоположение";
+            dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewTextBoxColumn3.FillWeight = 280.748657F;
+            dataGridViewTextBoxColumn3.HeaderText = "сообщение";
+            dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
             // Compiler
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(984, 522);
-            Controls.Add(tableLayoutPanel1);
+            Controls.Add(splitContainer1);
             Controls.Add(toolStrip1);
             Controls.Add(menuStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -466,7 +593,15 @@
             toolStrip1.PerformLayout();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            tableLayoutPanel1.ResumeLayout(false);
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
+            tabControl2.ResumeLayout(false);
+            parser1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)LexerDataGrid).EndInit();
+            scanner.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ParserDataGrid).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -515,8 +650,20 @@
         private ToolStripButton createdBy;
         private TabControl tabControl1;
         private TabPage tabPage1;
-        private RichTextBox richTextBox;
-        private RichTextBox richTextBox1;
-        private TableLayoutPanel tableLayoutPanel1;
+        private RichTextBox input;
+        private SplitContainer splitContainer1;
+        private DataGridView LexerDataGrid;
+        private DataGridViewTextBoxColumn number;
+        private DataGridViewTextBoxColumn code;
+        private DataGridViewTextBoxColumn typeOfLexeme;
+        private DataGridViewTextBoxColumn lexeme;
+        private DataGridViewTextBoxColumn placement;
+        private TabControl tabControl2;
+        private TabPage parser1;
+        private TabPage scanner;
+        private DataGridView ParserDataGrid;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
     }
 }

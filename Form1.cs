@@ -1,3 +1,4 @@
+using Compiler;
 using System.Diagnostics;
 using System.Net;
 using System.Reflection;
@@ -20,7 +21,7 @@ namespace WinFormsApp1
         {
             try
             {
-                fileLogic.SaveFileAs(richTextBox.Text);
+                fileLogic.SaveFileAs(input.Text);
                 PrintFileName();
             }
             catch (Exception ex)
@@ -43,7 +44,7 @@ namespace WinFormsApp1
 
                         using (StreamReader reader = new StreamReader(fileLogic.OpenFilePath))
                         {
-                            richTextBox.Text = reader.ReadToEnd();
+                            input.Text = reader.ReadToEnd();
                         }
                         PrintFileName();
                     }
@@ -53,7 +54,7 @@ namespace WinFormsApp1
                     fileLogic.OpenFile();
                     using (StreamReader reader = new StreamReader(fileLogic.OpenFilePath))
                     {
-                        richTextBox.Text = reader.ReadToEnd();
+                        input.Text = reader.ReadToEnd();
                     }
                     PrintFileName();
                 }
@@ -78,7 +79,7 @@ namespace WinFormsApp1
         {
             try
             {
-                fileLogic.SaveFileChanges(richTextBox.Text);
+                fileLogic.SaveFileChanges(input.Text);
 
                 PrintFileName();
             }
@@ -90,53 +91,81 @@ namespace WinFormsApp1
 
         private void backChanges_Click(object sender, EventArgs e)
         {
-            richTextBox.Undo();
+            input.Undo();
         }
 
         private void repeat_Click(object sender, EventArgs e)
         {
-            richTextBox.Redo();
+            input.Redo();
         }
 
         private void copyText_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(richTextBox.SelectedText))
-                Clipboard.SetText(richTextBox.SelectedText);
+            if (!string.IsNullOrEmpty(input.SelectedText))
+                Clipboard.SetText(input.SelectedText);
 
         }
 
         private void cutText_Click(object sender, EventArgs e)
         {
-            if (richTextBox.SelectedText != "")
+            if (input.SelectedText != "")
             {
                 // Копируем выделенный текст в буфер обмена
-                Clipboard.SetText(richTextBox.SelectedText);
+                Clipboard.SetText(input.SelectedText);
 
                 // Удаляем выделенный текст
-                richTextBox.SelectedText = "";
+                input.SelectedText = "";
             }
         }
 
         private void putText_Click(object sender, EventArgs e)
         {
-            if (richTextBox.Focused && Clipboard.ContainsText())
+            if (input.Focused && Clipboard.ContainsText())
             {
-                int cursorPosition = richTextBox.SelectionStart; // сохраняем позицию курсора
+                int cursorPosition = input.SelectionStart; // сохраняем позицию курсора
 
-                string text = richTextBox.Text;
+                string text = input.Text;
                 string textBeforeCursor = text.Substring(0, cursorPosition);
-                string textAfterCursor = text.Substring(cursorPosition + richTextBox.SelectionLength, text.Length - cursorPosition - richTextBox.SelectionLength);
+                string textAfterCursor = text.Substring(cursorPosition + input.SelectionLength, text.Length - cursorPosition - input.SelectionLength);
 
-                richTextBox.Text = textBeforeCursor + Clipboard.GetText() + textAfterCursor;
-                richTextBox.SelectionStart = cursorPosition + Clipboard.GetText().Length; // устанавливаем новую позицию курсора после вставки
+                input.Text = textBeforeCursor + Clipboard.GetText() + textAfterCursor;
+                input.SelectionStart = cursorPosition + Clipboard.GetText().Length; // устанавливаем новую позицию курсора после вставки
             }
         }
 
         private void start_Click(object sender, EventArgs e)
         {
 
+           // Lexer(input.Text);
+            StartParse(input.Text);
         }
 
+        public void StartParse(string text)
+        {
+            ParserDataGrid.Rows.Clear();
+            Parser parser = new Parser(text);
+            parser.Parse(text);
+            for (int i = 0; i < parser.Errors.Count; i++)
+            {
+                ParserDataGrid.Rows.Add(i+1, parser.Errors[i].Position, parser.Errors[i].Message);
+            }
+            if (parser.Errors.Count == 0)
+            {
+                MessageBox.Show("Ошибок не обнаружено!");
+            }
+        }
+
+        public void Lexer(string text)
+        {
+            LexerDataGrid.Rows.Clear();
+            List<Lexeme> lexemes = new List<Lexeme>();
+            LexicalAnalyzer analyzer = new LexicalAnalyzer();
+            lexemes = analyzer.Analyze(text);
+            for (int i = 0; i < lexemes.Count; i++)
+            {
+                LexerDataGrid.Rows.Add(i + 1, lexemes[i].LexemeId, lexemes[i].LexemeName, lexemes[i].Value, lexemes[i].Position);
+            }
+        }
         private void info_Click(object sender, EventArgs e)
         {
             if (System.IO.File.Exists(filePath))
@@ -167,13 +196,13 @@ namespace WinFormsApp1
 
         private void selectAll_Click(object sender, EventArgs e)
         {
-            richTextBox.SelectAll();
+            input.SelectAll();
         }
 
         private void Delete_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(richTextBox.SelectedText))
-                richTextBox.SelectedText = ""; // Удаляем выделенный текст и помещаем его в буфер
+            if (!string.IsNullOrEmpty(input.SelectedText))
+                input.SelectedText = ""; // Удаляем выделенный текст и помещаем его в буфер
 
         }
 
