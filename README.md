@@ -120,19 +120,18 @@ VT = { ‘const ’, ‘double ’, ‘a’…’z’, ‘A’…’Z’, ‘0�
 
 VN = { <CONST>, DOUBLE, NAME, NAMEREM, NUMBER, INT, INTREM, DECIMAL, DECIMALREM, END, letter, digit }
 
-P = {
--<CONST> → ‘const ’ DOUBLE 
--DOUBLE → 'double ' NAME
--NAME → letter NAMEREM 
--NAMEREM →  letter NAMEREM | '=' NUMBER
--NUMBER → ['+'|'-'] INT
--INT → digit INTREM
--INTREM → digit INTREM | '.' DECIMAL | ';'
--DECIMAL → digit DECIMALREM 
--DECIMALREM → digit DECIMALREM | ';' 
--letter → ‘a’ | ‘b’ | … | ‘z’ | ‘A’ | ‘B’ | … | ‘Z’
--digit → ‘0’ | ‘1’ | … | ‘9’
-}
+
+- <CONST> → ‘const ’ DOUBLE 
+- DOUBLE → 'double ' NAME
+- NAME → letter NAMEREM 
+- NAMEREM →  letter NAMEREM | '=' NUMBER
+- NUMBER → ['+'|'-'] INT
+- INT → digit INTREM
+- INTREM → digit INTREM | '.' DECIMAL | ';'
+- DECIMAL → digit DECIMALREM 
+- DECIMALREM → digit DECIMALREM | ';' 
+- letter → ‘a’ | ‘b’ | … | ‘z’ | ‘A’ | ‘B’ | … | ‘Z’
+- digit → ‘0’ | ‘1’ | … | ‘9’
 
 ### Классификация грамматики
 Согласно классификации Хомского, грамматика G[Z] является полностью автоматной.
