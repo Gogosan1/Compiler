@@ -86,6 +86,8 @@
             typeOfLexeme = new DataGridViewTextBoxColumn();
             lexeme = new DataGridViewTextBoxColumn();
             placement = new DataGridViewTextBoxColumn();
+            tabPage2 = new TabPage();
+            polishTextBox = new RichTextBox();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -99,6 +101,7 @@
             ((System.ComponentModel.ISupportInitialize)ParserDataGrid).BeginInit();
             scanner.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)LexerDataGrid).BeginInit();
+            tabPage2.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -163,49 +166,49 @@
             // отменToolStripMenuItem
             // 
             отменToolStripMenuItem.Name = "отменToolStripMenuItem";
-            отменToolStripMenuItem.Size = new Size(224, 26);
+            отменToolStripMenuItem.Size = new Size(186, 26);
             отменToolStripMenuItem.Text = "Отменить";
             отменToolStripMenuItem.Click += backChanges_Click;
             // 
             // повторитьToolStripMenuItem
             // 
             повторитьToolStripMenuItem.Name = "повторитьToolStripMenuItem";
-            повторитьToolStripMenuItem.Size = new Size(224, 26);
+            повторитьToolStripMenuItem.Size = new Size(186, 26);
             повторитьToolStripMenuItem.Text = "Повторить";
             повторитьToolStripMenuItem.Click += repeat_Click;
             // 
             // вырезатьToolStripMenuItem
             // 
             вырезатьToolStripMenuItem.Name = "вырезатьToolStripMenuItem";
-            вырезатьToolStripMenuItem.Size = new Size(224, 26);
+            вырезатьToolStripMenuItem.Size = new Size(186, 26);
             вырезатьToolStripMenuItem.Text = "Вырезать";
             вырезатьToolStripMenuItem.Click += cutText_Click;
             // 
             // копироватьToolStripMenuItem
             // 
             копироватьToolStripMenuItem.Name = "копироватьToolStripMenuItem";
-            копироватьToolStripMenuItem.Size = new Size(224, 26);
+            копироватьToolStripMenuItem.Size = new Size(186, 26);
             копироватьToolStripMenuItem.Text = "Копировать";
             копироватьToolStripMenuItem.Click += copyText_Click;
             // 
             // вставитьToolStripMenuItem
             // 
             вставитьToolStripMenuItem.Name = "вставитьToolStripMenuItem";
-            вставитьToolStripMenuItem.Size = new Size(224, 26);
+            вставитьToolStripMenuItem.Size = new Size(186, 26);
             вставитьToolStripMenuItem.Text = "Вставить";
             вставитьToolStripMenuItem.Click += putText_Click;
             // 
             // удалитьToolStripMenuItem
             // 
             удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            удалитьToolStripMenuItem.Size = new Size(224, 26);
+            удалитьToolStripMenuItem.Size = new Size(186, 26);
             удалитьToolStripMenuItem.Text = "Удалить";
             удалитьToolStripMenuItem.Click += Delete_Click;
             // 
             // выделитьToolStripMenuItem
             // 
             выделитьToolStripMenuItem.Name = "выделитьToolStripMenuItem";
-            выделитьToolStripMenuItem.Size = new Size(224, 26);
+            выделитьToolStripMenuItem.Size = new Size(186, 26);
             выделитьToolStripMenuItem.Text = "Выделить все";
             выделитьToolStripMenuItem.Click += selectAll_Click;
             // 
@@ -465,6 +468,7 @@
             // 
             tabControl2.Controls.Add(parser1);
             tabControl2.Controls.Add(scanner);
+            tabControl2.Controls.Add(tabPage2);
             tabControl2.Dock = DockStyle.Fill;
             tabControl2.Location = new Point(0, 0);
             tabControl2.Name = "tabControl2";
@@ -575,6 +579,26 @@
             placement.MinimumWidth = 6;
             placement.Name = "placement";
             // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(polishTextBox);
+            tabPage2.Location = new Point(4, 29);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Size = new Size(976, 189);
+            tabPage2.TabIndex = 2;
+            tabPage2.Text = "Польская нотация";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // polishTextBox
+            // 
+            polishTextBox.Dock = DockStyle.Fill;
+            polishTextBox.Location = new Point(0, 0);
+            polishTextBox.Name = "polishTextBox";
+            polishTextBox.ReadOnly = true;
+            polishTextBox.Size = new Size(976, 189);
+            polishTextBox.TabIndex = 0;
+            polishTextBox.Text = "";
+            // 
             // Compiler
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -603,6 +627,7 @@
             ((System.ComponentModel.ISupportInitialize)ParserDataGrid).EndInit();
             scanner.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)LexerDataGrid).EndInit();
+            tabPage2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -666,5 +691,7 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private TabPage tabPage2;
+        private RichTextBox polishTextBox;
     }
 }

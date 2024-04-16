@@ -25,6 +25,8 @@
 
   <ItemGroup>
     <Folder Include="README_images\" />
+    <Folder Include="lab6\" />
+    <Folder Include="lab7\" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,7 @@
 using Compiler;
+using Lab5;
 using System.Diagnostics;
+using System.Web;
 
 
 namespace WinFormsApp1
@@ -136,11 +138,28 @@ namespace WinFormsApp1
         {
 
             // Lexer(input.Text);
-            StartParse(input.Text);
+            //StartParse(input.Text);
+            PolishNotation(input.Text);
         }
-        
-         List<ParserError> _incorrectLexemes;
 
+
+        List<ParserError> _incorrectLexemes;
+
+
+        public void PolishNotation(string text)
+        {
+            try
+            {
+                PolishNotationCalculator calc = new PolishNotationCalculator(text);
+                polishTextBox.Text = "";
+                polishTextBox.Text += "Исходное выражение:\n" + text + "\n";
+                polishTextBox.Text += "Арифметическое выражение в ПОЛИЗ:\n" + calc.postfixExpr + "\n";
+                polishTextBox.Text += "Подсчитаное выражение:\nОтвет: " + calc.Calc();
+            } catch (Exception ex)
+            {
+                polishTextBox.Text = ex.Message;
+            }
+        }
         public void StartParse(string text)
         {
             ParserDataGrid.Rows.Clear();
