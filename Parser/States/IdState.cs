@@ -107,42 +107,7 @@ public class IdState : IState
                     break;
 
             }
-            /*      if (char.IsLetter(currentSymbol)) 
-                  {
-                      IsNotFirstSymbol = true;
-                      if (spaseBetweenLetters)
-                      {
-                          error.Value += currentSymbol;
-                          error.EndIndex = stringHelper.Index + 1;
-                          // ошибка
-                      }
-                      else
-                      {
-                          if (error.Value != string.Empty)
-                              errors.Add(error);
-                          error = new ParserError("Ожидался идентификатор", stringHelper.Index + 1, stringHelper.Index + 1);
-                      }
-
-                  } else if ((char.IsDigit(currentSymbol) || currentSymbol == '_')) 
-                  {
-                      if (!IsNotFirstSymbol)
-                      {
-                          error.Value += currentSymbol;
-                          error.EndIndex = stringHelper.Index + 1;
-                          // ошибка
-                      }
-                      else
-                      {
-                          if (error.Value != string.Empty)
-                              errors.Add(error);
-                          error = new ParserError("Ожидался идентификатор", stringHelper.Index + 1, stringHelper.Index + 1);
-                      }
-                  } else if (currentSymbol == ' ') 
-                  {
-                      spaseBetweenLetters = true;
-                      stringHelper.SkipSpaces();
-                  }*/
-
+ 
             if (currentSymbol == '=')
             {
                 if (error.Value != string.Empty)

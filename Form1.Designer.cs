@@ -75,17 +75,17 @@
             splitContainer1 = new SplitContainer();
             tabControl2 = new TabControl();
             parser1 = new TabPage();
+            ParserDataGrid = new DataGridView();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            scanner = new TabPage();
             LexerDataGrid = new DataGridView();
             number = new DataGridViewTextBoxColumn();
             code = new DataGridViewTextBoxColumn();
             typeOfLexeme = new DataGridViewTextBoxColumn();
             lexeme = new DataGridViewTextBoxColumn();
             placement = new DataGridViewTextBoxColumn();
-            scanner = new TabPage();
-            ParserDataGrid = new DataGridView();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -96,9 +96,9 @@
             splitContainer1.SuspendLayout();
             tabControl2.SuspendLayout();
             parser1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)LexerDataGrid).BeginInit();
-            scanner.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ParserDataGrid).BeginInit();
+            scanner.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)LexerDataGrid).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -163,49 +163,49 @@
             // отменToolStripMenuItem
             // 
             отменToolStripMenuItem.Name = "отменToolStripMenuItem";
-            отменToolStripMenuItem.Size = new Size(186, 26);
+            отменToolStripMenuItem.Size = new Size(224, 26);
             отменToolStripMenuItem.Text = "Отменить";
             отменToolStripMenuItem.Click += backChanges_Click;
             // 
             // повторитьToolStripMenuItem
             // 
             повторитьToolStripMenuItem.Name = "повторитьToolStripMenuItem";
-            повторитьToolStripMenuItem.Size = new Size(186, 26);
+            повторитьToolStripMenuItem.Size = new Size(224, 26);
             повторитьToolStripMenuItem.Text = "Повторить";
             повторитьToolStripMenuItem.Click += repeat_Click;
             // 
             // вырезатьToolStripMenuItem
             // 
             вырезатьToolStripMenuItem.Name = "вырезатьToolStripMenuItem";
-            вырезатьToolStripMenuItem.Size = new Size(186, 26);
+            вырезатьToolStripMenuItem.Size = new Size(224, 26);
             вырезатьToolStripMenuItem.Text = "Вырезать";
             вырезатьToolStripMenuItem.Click += cutText_Click;
             // 
             // копироватьToolStripMenuItem
             // 
             копироватьToolStripMenuItem.Name = "копироватьToolStripMenuItem";
-            копироватьToolStripMenuItem.Size = new Size(186, 26);
+            копироватьToolStripMenuItem.Size = new Size(224, 26);
             копироватьToolStripMenuItem.Text = "Копировать";
             копироватьToolStripMenuItem.Click += copyText_Click;
             // 
             // вставитьToolStripMenuItem
             // 
             вставитьToolStripMenuItem.Name = "вставитьToolStripMenuItem";
-            вставитьToolStripMenuItem.Size = new Size(186, 26);
+            вставитьToolStripMenuItem.Size = new Size(224, 26);
             вставитьToolStripMenuItem.Text = "Вставить";
             вставитьToolStripMenuItem.Click += putText_Click;
             // 
             // удалитьToolStripMenuItem
             // 
             удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            удалитьToolStripMenuItem.Size = new Size(186, 26);
+            удалитьToolStripMenuItem.Size = new Size(224, 26);
             удалитьToolStripMenuItem.Text = "Удалить";
             удалитьToolStripMenuItem.Click += Delete_Click;
             // 
             // выделитьToolStripMenuItem
             // 
             выделитьToolStripMenuItem.Name = "выделитьToolStripMenuItem";
-            выделитьToolStripMenuItem.Size = new Size(186, 26);
+            выделитьToolStripMenuItem.Size = new Size(224, 26);
             выделитьToolStripMenuItem.Text = "Выделить все";
             выделитьToolStripMenuItem.Click += selectAll_Click;
             // 
@@ -245,6 +245,7 @@
             диагностикаИНейтрализацияОшибокToolStripMenuItem.Name = "диагностикаИНейтрализацияОшибокToolStripMenuItem";
             диагностикаИНейтрализацияОшибокToolStripMenuItem.Size = new Size(363, 26);
             диагностикаИНейтрализацияОшибокToolStripMenuItem.Text = "Диагностика и нейтрализация ошибок";
+            диагностикаИНейтрализацияОшибокToolStripMenuItem.Click += cleanErrors;
             // 
             // тестовыйПримерToolStripMenuItem
             // 
@@ -482,6 +483,52 @@
             parser1.Text = "Парсер";
             parser1.UseVisualStyleBackColor = true;
             // 
+            // ParserDataGrid
+            // 
+            ParserDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ParserDataGrid.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn3 });
+            ParserDataGrid.Dock = DockStyle.Fill;
+            ParserDataGrid.Location = new Point(3, 3);
+            ParserDataGrid.Name = "ParserDataGrid";
+            ParserDataGrid.RowHeadersWidth = 51;
+            ParserDataGrid.Size = new Size(970, 183);
+            ParserDataGrid.TabIndex = 1;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewTextBoxColumn1.FillWeight = 15F;
+            dataGridViewTextBoxColumn1.HeaderText = "№";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewTextBoxColumn5.FillWeight = 50F;
+            dataGridViewTextBoxColumn5.HeaderText = "местоположение";
+            dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewTextBoxColumn3.FillWeight = 280.748657F;
+            dataGridViewTextBoxColumn3.HeaderText = "сообщение";
+            dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // scanner
+            // 
+            scanner.Controls.Add(LexerDataGrid);
+            scanner.Location = new Point(4, 29);
+            scanner.Name = "scanner";
+            scanner.Padding = new Padding(3);
+            scanner.Size = new Size(976, 189);
+            scanner.TabIndex = 1;
+            scanner.Text = "Сканер";
+            scanner.UseVisualStyleBackColor = true;
+            // 
             // LexerDataGrid
             // 
             LexerDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -528,52 +575,6 @@
             placement.MinimumWidth = 6;
             placement.Name = "placement";
             // 
-            // scanner
-            // 
-            scanner.Controls.Add(LexerDataGrid);
-            scanner.Location = new Point(4, 29);
-            scanner.Name = "scanner";
-            scanner.Padding = new Padding(3);
-            scanner.Size = new Size(976, 189);
-            scanner.TabIndex = 1;
-            scanner.Text = "Сканер";
-            scanner.UseVisualStyleBackColor = true;
-            // 
-            // ParserDataGrid
-            // 
-            ParserDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ParserDataGrid.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn3 });
-            ParserDataGrid.Dock = DockStyle.Fill;
-            ParserDataGrid.Location = new Point(3, 3);
-            ParserDataGrid.Name = "ParserDataGrid";
-            ParserDataGrid.RowHeadersWidth = 51;
-            ParserDataGrid.Size = new Size(970, 183);
-            ParserDataGrid.TabIndex = 1;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewTextBoxColumn1.FillWeight = 15F;
-            dataGridViewTextBoxColumn1.HeaderText = "№";
-            dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            dataGridViewTextBoxColumn5.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewTextBoxColumn5.FillWeight = 50F;
-            dataGridViewTextBoxColumn5.HeaderText = "местоположение";
-            dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewTextBoxColumn3.FillWeight = 280.748657F;
-            dataGridViewTextBoxColumn3.HeaderText = "сообщение";
-            dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
             // Compiler
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -599,9 +600,9 @@
             splitContainer1.ResumeLayout(false);
             tabControl2.ResumeLayout(false);
             parser1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)LexerDataGrid).EndInit();
-            scanner.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ParserDataGrid).EndInit();
+            scanner.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)LexerDataGrid).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

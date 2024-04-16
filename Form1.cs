@@ -1,4 +1,5 @@
 using Compiler;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Net;
 using System.Reflection;
@@ -11,7 +12,7 @@ namespace WinFormsApp1
         private FileLogic fileLogic = new FileLogic();
         private string openFilePath;
         private const string filePath = @"C:\Users\pakan\Desktop\Универ\6 семак\Теория формальных языков и компиляторов\WinFormsApp1\Help.html";
- 
+
         public Compiler()
         {
             InitializeComponent();
@@ -136,18 +137,21 @@ namespace WinFormsApp1
         private void start_Click(object sender, EventArgs e)
         {
 
-           // Lexer(input.Text);
+            // Lexer(input.Text);
             StartParse(input.Text);
         }
+        
+         List<ParserError> _incorrectLexemes;
 
         public void StartParse(string text)
         {
             ParserDataGrid.Rows.Clear();
             Parser parser = new Parser(text);
             parser.Parse(text);
+            _incorrectLexemes = parser.Errors;
             for (int i = 0; i < parser.Errors.Count; i++)
             {
-                ParserDataGrid.Rows.Add(i+1, parser.Errors[i].Position, parser.Errors[i].Message);
+                ParserDataGrid.Rows.Add(i + 1, parser.Errors[i].Position, parser.Errors[i].Message);
             }
             if (parser.Errors.Count == 0)
             {
@@ -174,7 +178,7 @@ namespace WinFormsApp1
                 p.StartInfo = new ProcessStartInfo(filePath) { UseShellExecute = true };
                 p.Start();
             }
-         }
+        }
 
         private void createdBy_Click(object sender, EventArgs e)
         {
@@ -206,7 +210,6 @@ namespace WinFormsApp1
 
         }
 
-
         private void Compiler_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (textChanged == true)
@@ -214,7 +217,7 @@ namespace WinFormsApp1
                 if (MessageBox.Show("Вы уверены, что хотите закрыть программу?\n" +
                     "Текущие изменения не сохранятся!", "Подтвердите закрытие", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 {
-                    e.Cancel = true; 
+                    e.Cancel = true;
                 }
             }
         }
@@ -224,8 +227,11 @@ namespace WinFormsApp1
             Compiler_FormClosing(sender, (FormClosingEventArgs)e);
         }
 
+        private void cleanErrors(object sender, EventArgs e)
+        {
+            if (_incorrectLexemes.Count > 0)
+                input.Text = TextCleaner.RemoveIncorrectLexemes(input.Text, _incorrectLexemes);
 
-
-       
+        }
     }
 }
