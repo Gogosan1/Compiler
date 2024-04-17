@@ -45,10 +45,17 @@ public class PolishNotationCalculator
     {
         string postfixExpr = "";
         Stack<char> stack = new();
+        string errors = "";
 
         for (int i = 0; i < infixExpr.Length; i++)
         {
             char c = infixExpr[i];
+
+            if (c == '(' && infixExpr[i+1] == ')')
+            {
+                postfixExpr += '0';
+            }
+
 
             if (Char.IsDigit(c))
             {
@@ -76,11 +83,17 @@ public class PolishNotationCalculator
             }
             else if (c != '\r' && c != '\n')
             {
-                throw new ArgumentException($"Обнаружен недопустимый символ в выражении: \"{c}\"");
+                errors += $"Обнаружен недопустимый символ в выражении: \"{c}\"\n";
             }
         }
         foreach (char op in stack)
             postfixExpr += op + " ";
+
+
+        if (errors.Length > 0)
+        {
+            throw new ArgumentException(errors);
+        }
 
         return postfixExpr;
     }
@@ -112,7 +125,7 @@ public class PolishNotationCalculator
     {
         Stack<double> locals = new();
         int counter = 0;
-
+        int flag = 0;
         for (int i = 0; i < postfixExpr.Length; i++)
         {
             char c = postfixExpr[i];
@@ -136,7 +149,15 @@ public class PolishNotationCalculator
                 double second = locals.Count > 0 ? locals.Pop() : 0,
                 first = locals.Count > 0 ? locals.Pop() : 0;
 
-                locals.Push(Execute(c, first, second));
+              /*  if (locals.Count == 0)
+                {
+                    flag++;
+                }
+*/
+  /*              if (flag <= 1)
+                { 
+  */                    locals.Push(Execute(c, first, second));
+    //            }
             }
         }
 
