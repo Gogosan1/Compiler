@@ -1,7 +1,9 @@
 using Compiler;
 using Lab5;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using System.Web;
+using static System.Windows.Forms.Design.AxImporter;
 
 
 namespace WinFormsApp1
@@ -139,9 +141,62 @@ namespace WinFormsApp1
 
             // Lexer(input.Text);
             //StartParse(input.Text);
-            PolishNotation(input.Text);
+            // PolishNotation(input.Text);
+            lab6Method();
         }
 
+        void lab6Method()
+        {
+            TextBoxLab6.Text = "";
+            ValidateNotZero(input.Text);
+            ValidatePyComments(input.Text);
+            ValidateRusCarsNumbers(input.Text);
+        }
+
+        public void ValidateNotZero(string input)
+        {
+            string pattern = @"\b\d*[1-9]\b";
+            Regex regex = new Regex(pattern);
+            foreach (Match m in Regex.Matches(input, pattern))
+            {
+                TextBoxLab6.Text += "На позиции: " + m.Index + " найдено число не заканчивающееся на 0: " + m.Value + '\n';
+            }
+        }
+
+        public void ValidatePyComments(string input)
+        {
+            string pattern = @"#.*";
+            Regex regex = new Regex(pattern);
+
+            foreach (Match m in Regex.Matches(input, pattern))
+            {
+                TextBoxLab6.Text += "На позиции: " + m.Index + " найден однострочный комментарий python: " + m.Value + '\n';
+            }
+        }
+
+        public void ValidateRusCarsNumbers(string input)
+        {
+            string pattern = @"^[АВЕКМНОРСТУХ]{1}(?!000)\d{3}[АВЕКМНОРСТУХ]{2}" +
+                             "(0[1-9]|[1-7][0-9]|8[0-9]|9[0-1]|102|702|113|116|716|121|93|123|193|" +
+                             "124|125|126|134|136|138|91|139|142|147|90|150|190|750|790|550|" +
+                             "152|252|154|156|159|161|761|163|763|164|96|196|173|174|97|99|" +
+                             "177|197|199|777|797|799|977|98|178|198|186|94)$";
+
+            Regex regex = new Regex(pattern);
+
+            RegexOptions options = RegexOptions.Multiline;
+
+            foreach (Match m in Regex.Matches(input, pattern, options))
+            {
+                TextBoxLab6.Text += "На позиции: " + m.Index + " найден номер: " + m.Value +  '\n';
+            }
+        }
+
+        private List<Match> GetMatchesWithPositions(string input, Regex regex)
+        {
+            List<Match> matches = [.. regex.Matches(input).Cast<Match>()];
+            return matches;
+        }
 
         List<ParserError> _incorrectLexemes;
 

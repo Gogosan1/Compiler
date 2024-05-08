@@ -86,6 +86,12 @@ public class IdState : IState
                     break;
                 case ' ':
                     spaseBetweenLetters = true;
+                    if (currentSymbol != ' ')
+                    {
+                        errors.Add(error);
+                        error = new ParserError("Ожидался идентификатор", stringHelper.Index + 1, stringHelper.Index + 1);
+                        currentSymbol = stringHelper.Next;
+                    }
                     while (currentSymbol == ' ') // сломается при переносе строки
                     {
                         currentSymbol = stringHelper.Next;

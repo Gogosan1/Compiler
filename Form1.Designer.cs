@@ -88,6 +88,10 @@
             placement = new DataGridViewTextBoxColumn();
             tabPage2 = new TabPage();
             polishTextBox = new RichTextBox();
+            lab6 = new TabPage();
+            lab7 = new TabPage();
+            TextBoxLab6 = new RichTextBox();
+            TextBoxLab7 = new RichTextBox();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -102,6 +106,8 @@
             scanner.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)LexerDataGrid).BeginInit();
             tabPage2.SuspendLayout();
+            lab6.SuspendLayout();
+            lab7.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -469,6 +475,8 @@
             tabControl2.Controls.Add(parser1);
             tabControl2.Controls.Add(scanner);
             tabControl2.Controls.Add(tabPage2);
+            tabControl2.Controls.Add(lab6);
+            tabControl2.Controls.Add(lab7);
             tabControl2.Dock = DockStyle.Fill;
             tabControl2.Location = new Point(0, 0);
             tabControl2.Name = "tabControl2";
@@ -599,6 +607,47 @@
             polishTextBox.TabIndex = 0;
             polishTextBox.Text = "";
             // 
+            // lab6
+            // 
+            lab6.AccessibleRole = AccessibleRole.OutlineButton;
+            lab6.Controls.Add(TextBoxLab6);
+            lab6.Location = new Point(4, 29);
+            lab6.Name = "lab6";
+            lab6.Size = new Size(976, 189);
+            lab6.TabIndex = 3;
+            lab6.Text = "Регулярные выражения";
+            lab6.UseVisualStyleBackColor = true;
+            // 
+            // lab7
+            // 
+            lab7.Controls.Add(TextBoxLab7);
+            lab7.Location = new Point(4, 29);
+            lab7.Name = "lab7";
+            lab7.Size = new Size(976, 189);
+            lab7.TabIndex = 4;
+            lab7.Text = "lab7";
+            lab7.UseVisualStyleBackColor = true;
+            // 
+            // TextBoxLab6
+            // 
+            TextBoxLab6.Dock = DockStyle.Fill;
+            TextBoxLab6.Location = new Point(0, 0);
+            TextBoxLab6.Name = "TextBoxLab6";
+            TextBoxLab6.ReadOnly = true;
+            TextBoxLab6.Size = new Size(976, 189);
+            TextBoxLab6.TabIndex = 0;
+            TextBoxLab6.Text = "";
+            // 
+            // TextBoxLab7
+            // 
+            TextBoxLab7.Dock = DockStyle.Fill;
+            TextBoxLab7.Location = new Point(0, 0);
+            TextBoxLab7.Name = "TextBoxLab7";
+            TextBoxLab7.ReadOnly = true;
+            TextBoxLab7.Size = new Size(976, 189);
+            TextBoxLab7.TabIndex = 0;
+            TextBoxLab7.Text = "";
+            // 
             // Compiler
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -628,6 +677,8 @@
             scanner.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)LexerDataGrid).EndInit();
             tabPage2.ResumeLayout(false);
+            lab6.ResumeLayout(false);
+            lab7.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -693,5 +744,9 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private TabPage tabPage2;
         private RichTextBox polishTextBox;
+        private TabPage lab6;
+        private TabPage lab7;
+        private RichTextBox TextBoxLab6;
+        private RichTextBox TextBoxLab7;
     }
 }
