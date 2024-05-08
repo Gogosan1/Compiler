@@ -1,5 +1,6 @@
 using Compiler;
 using Lab5;
+using Lab7;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -142,7 +143,8 @@ namespace WinFormsApp1
             // Lexer(input.Text);
             //StartParse(input.Text);
             // PolishNotation(input.Text);
-            lab6Method();
+            //lab6Method();
+            lab7Method();
         }
 
         void lab6Method()
@@ -151,6 +153,15 @@ namespace WinFormsApp1
             ValidateNotZero(input.Text);
             ValidatePyComments(input.Text);
             ValidateRusCarsNumbers(input.Text);
+        }
+
+        void lab7Method()
+        {
+            TextBoxLab7.Text = "";
+            WhileLexer whileLexer = new WhileLexer();
+            WhileParser whileParser = new WhileParser();
+
+           TextBoxLab7.Text += whileParser.Parse(whileLexer.Analyze(input.Text));
         }
 
         public void ValidateNotZero(string input)
@@ -162,7 +173,6 @@ namespace WinFormsApp1
                 TextBoxLab6.Text += "На позиции: " + m.Index + " найдено число не заканчивающееся на 0: " + m.Value + '\n';
             }
         }
-
         public void ValidatePyComments(string input)
         {
             string pattern = @"#.*";
@@ -173,7 +183,6 @@ namespace WinFormsApp1
                 TextBoxLab6.Text += "На позиции: " + m.Index + " найден однострочный комментарий python: " + m.Value + '\n';
             }
         }
-
         public void ValidateRusCarsNumbers(string input)
         {
             string pattern = @"^[АВЕКМНОРСТУХ]{1}(?!000)\d{3}[АВЕКМНОРСТУХ]{2}" +
@@ -192,14 +201,7 @@ namespace WinFormsApp1
             }
         }
 
-        private List<Match> GetMatchesWithPositions(string input, Regex regex)
-        {
-            List<Match> matches = [.. regex.Matches(input).Cast<Match>()];
-            return matches;
-        }
-
         List<ParserError> _incorrectLexemes;
-
 
         public void PolishNotation(string text)
         {

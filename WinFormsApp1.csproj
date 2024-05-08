@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="README_images\" />
-    <Folder Include="lab7\" />
   </ItemGroup>
 
 </Project>
