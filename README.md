@@ -137,7 +137,7 @@ VT = { ‘const ’, ‘double ’, ‘a’…’z’, ‘A’…’Z’, ‘0�
 VN = { <CONST>, DOUBLE, NAME, NAMEREM, NUMBER, INT, INTREM, DECIMAL, DECIMALREM, END, letter, digit }
 
 P =
-- <CONST> → ‘const ’ DOUBLE 
+- CONST → ‘const ’ DOUBLE 
 - DOUBLE → 'double ' NAME
 - NAME → letter NAMEREM 
 - NAMEREM →  letter NAMEREM | '=' NUMBER
