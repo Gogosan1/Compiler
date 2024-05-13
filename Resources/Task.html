@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Постановка задачи</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Постановка задачи</h1>
+
+    <h2>Оглавление</h2>
+    <ul>
+        <li><a href="#тема-работы">Тема работы</a></li>
+        <li><a href="#особенности-языка">Особенности языка</a></li>
+        <li><a href="#примеры-верных-строк">Примеры верных строк из языка</a></li>
+    </ul>
+
+    <h2 id="тема-работы">Тема работы</h2>
+    <p>Разработка текстового редактора с функциями языкового процессора. Объявление вещественной константы с инициализацией на языке C/C++</p>
+
+    <h2 id="особенности-языка">Особенности языка</h2>
+    <p>Константы в языках С/С++ - это элементы данных, значения которых известны на этапе компиляции и не изменяются в процессе выполнения программы. Для описания констант используется оператор const.</p>
+    <p>Формат записи для объявления вещественной константы в С/С++ следующий:</p>
+
+    <pre><code class="language-c++">const double имя_константы = значение;</code></pre>
+
+    <h2 id="примеры-верных-строк">Примеры верных строк из языка</h2>
+
+    <p>В соответствии с разработанной автоматной грамматикой синтаксический анализатор (парсер) целочисленных констант будет считать верными следующие записи:</p>
+
+    <pre><code class="language-c++">const double PI = 3.14159265359;</code></pre>
+
+    <pre><code class="language-c++">const double name = +6.34;</code></pre>
+
+    <pre><code class="language-c++">const double name = -9.34;</code></pre>
+
+    <pre><code class="language-c++">const double name_1 = 454; const double name_2 = 3450.34;</code></pre>
+
+    <pre><code class="language-c++">const double Name3 = -454.45;</code></pre>
+
+    <pre><code class="language-c++">const double Name3 = +454.45;</code></pre>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-sql.min.js"></script>
+
+</body>
+</html>

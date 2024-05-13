@@ -16,11 +16,12 @@ public enum LexemeType
     AssignmentOperator = 6,
     Sign = 7,
     UnsignedInteger = 8,
-    UnsignedDouble = 9,
+    Decimal = 9,
     Semicolon = 10,
     InvalidCharacter = 11,
     INT = 12,
-    DECIMAL = 13
+    Error = 13,
+    INTEGER = 14,
 }
 
 public class Lexeme
@@ -29,7 +30,7 @@ public class Lexeme
     private string message;
 
     public int LexemeId { get => (int)Type; }
-    public string LexemeName { get => lexemeNames[LexemeId - 1]; }
+    //public string LexemeName { get => lexemeNames[LexemeId - 1]; }
     public LexemeType Type { get; set; }
     public string Value { get; set; }
     public int StartIndex { get; set; }

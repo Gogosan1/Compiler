@@ -4,6 +4,7 @@ using Lab7;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Web;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.Design.AxImporter;
 
 
@@ -14,7 +15,13 @@ namespace WinFormsApp1
         private bool textChanged = false;
         private FileLogic fileLogic = new FileLogic();
         private string openFilePath;
-        private const string filePath = @"C:\Users\pakan\Desktop\Универ\6 семак\Теория формальных языков и компиляторов\WinFormsApp1\Help.html";
+        private const string filePath = @"C:\Users\pakan\Desktop\Универ\6 семак\Теория формальных языков и компиляторов\WinFormsApp1\Resources\Help.html";
+        private const string TaskFile = @"C:\Users\pakan\Desktop\Универ\6 семак\Теория формальных языков и компиляторов\WinFormsApp1\Resources\Task.html";
+        private const string GrammarFile = @"C:\Users\pakan\Desktop\Универ\6 семак\Теория формальных языков и компиляторов\WinFormsApp1\Resources\Grammar.html";
+        private const string ClassificationGrammarFile = @"C:\Users\pakan\Desktop\Универ\6 семак\Теория формальных языков и компиляторов\WinFormsApp1\Resources\ClassificationGrammar.html";
+        private const string AnalyzeMethodFile = @"C:\Users\pakan\Desktop\Универ\6 семак\Теория формальных языков и компиляторов\WinFormsApp1\Resources\AnalyzeMethod.html";
+        private const string LiteratureFile = @"C:\Users\pakan\Desktop\Универ\6 семак\Теория формальных языков и компиляторов\WinFormsApp1\Resources\Literature.html";
+        private const string CodeFile = @"C:\Users\pakan\Desktop\Универ\6 семак\Теория формальных языков и компиляторов\WinFormsApp1\Resources\Code.html";
 
         public Compiler()
         {
@@ -137,113 +144,124 @@ namespace WinFormsApp1
             }
         }
 
-        private void start_Click(object sender, EventArgs e)
-        {
-
-            // Lexer(input.Text);
-            //StartParse(input.Text);
-            // PolishNotation(input.Text);
-            //lab6Method();
-            lab7Method();
-        }
-
-        void lab6Method()
-        {
-            TextBoxLab6.Text = "";
-            ValidateNotZero(input.Text);
-            ValidatePyComments(input.Text);
-            ValidateRusCarsNumbers(input.Text);
-        }
-
-        void lab7Method()
-        {
-            TextBoxLab7.Text = "";
-            WhileLexer whileLexer = new WhileLexer();
-            WhileParser whileParser = new WhileParser();
-
-           TextBoxLab7.Text += whileParser.Parse(whileLexer.Analyze(input.Text));
-        }
-
-        public void ValidateNotZero(string input)
-        {
-            string pattern = @"\b\d*[1-9]\b";
-            Regex regex = new Regex(pattern);
-            foreach (Match m in Regex.Matches(input, pattern))
-            {
-                TextBoxLab6.Text += "На позиции: " + m.Index + " найдено число не заканчивающееся на 0: " + m.Value + '\n';
-            }
-        }
-        public void ValidatePyComments(string input)
-        {
-            string pattern = @"#.*";
-            Regex regex = new Regex(pattern);
-
-            foreach (Match m in Regex.Matches(input, pattern))
-            {
-                TextBoxLab6.Text += "На позиции: " + m.Index + " найден однострочный комментарий python: " + m.Value + '\n';
-            }
-        }
-        public void ValidateRusCarsNumbers(string input)
-        {
-            string pattern = @"^[АВЕКМНОРСТУХ]{1}(?!000)\d{3}[АВЕКМНОРСТУХ]{2}" +
-                             "(0[1-9]|[1-7][0-9]|8[0-9]|9[0-1]|102|702|113|116|716|121|93|123|193|" +
-                             "124|125|126|134|136|138|91|139|142|147|90|150|190|750|790|550|" +
-                             "152|252|154|156|159|161|761|163|763|164|96|196|173|174|97|99|" +
-                             "177|197|199|777|797|799|977|98|178|198|186|94)$";
-
-            Regex regex = new Regex(pattern);
-
-            RegexOptions options = RegexOptions.Multiline;
-
-            foreach (Match m in Regex.Matches(input, pattern, options))
-            {
-                TextBoxLab6.Text += "На позиции: " + m.Index + " найден номер: " + m.Value +  '\n';
-            }
-        }
-
         List<ParserError> _incorrectLexemes;
 
-        public void PolishNotation(string text)
-        {
-            try
-            {
-                PolishNotationCalculator calc = new PolishNotationCalculator(text);
-                polishTextBox.Text = "";
-                polishTextBox.Text += "Исходное выражение:\n" + text + "\n";
-                polishTextBox.Text += "Арифметическое выражение в ПОЛИЗ:\n" + calc.postfixExpr + "\n";
-                polishTextBox.Text += "Подсчитаное выражение:\nОтвет: " + calc.Calc();
-            } catch (Exception ex)
-            {
-                polishTextBox.Text = ex.Message;
-            }
-        }
-        public void StartParse(string text)
+        private void start_Click(object sender, EventArgs e)
         {
             ParserDataGrid.Rows.Clear();
-            Parser parser = new Parser(text);
-            parser.Parse(text);
-            _incorrectLexemes = parser.Errors;
-            for (int i = 0; i < parser.Errors.Count; i++)
+            LexicalAnalyzer analyzer = new LexicalAnalyzer();
+            ReqParser reqParser = new ReqParser();
+            reqParser.Input = input.Text;
+            reqParser.Parse(analyzer.Analyze(input.Text));
+
+            for (int i = 0; i < reqParser.Errors.Count; i++)
             {
-                ParserDataGrid.Rows.Add(i + 1, parser.Errors[i].Position, parser.Errors[i].Message);
+                ParserDataGrid.Rows.Add(i + 1, reqParser.Errors[i].Position, reqParser.Errors[i].Message);
             }
-            if (parser.Errors.Count == 0)
+            if (reqParser.Errors.Count == 0)
             {
                 MessageBox.Show("Ошибок не обнаружено!");
             }
         }
 
-        public void Lexer(string text)
-        {
-            LexerDataGrid.Rows.Clear();
-            List<Lexeme> lexemes = new List<Lexeme>();
-            LexicalAnalyzer analyzer = new LexicalAnalyzer();
-            lexemes = analyzer.Analyze(text);
-            for (int i = 0; i < lexemes.Count; i++)
-            {
-                LexerDataGrid.Rows.Add(i + 1, lexemes[i].LexemeId, lexemes[i].LexemeName, lexemes[i].Value, lexemes[i].Position);
-            }
-        }
+        /*        void lab6Method()
+                {
+                    TextBoxLab6.Text = "";
+                    ValidateNotZero(input.Text);
+                    ValidatePyComments(input.Text);
+                    ValidateRusCarsNumbers(input.Text);
+                }
+
+                void lab7Method()
+                {
+                    TextBoxLab7.Text = "";
+                    WhileLexer whileLexer = new WhileLexer();
+                    WhileParser whileParser = new WhileParser();
+
+                   TextBoxLab7.Text += whileParser.Parse(whileLexer.Analyze(input.Text));
+                }
+
+                public void ValidateNotZero(string input)
+                {
+                    string pattern = @"\b\d*[1-9]\b";
+                    Regex regex = new Regex(pattern);
+                    foreach (Match m in Regex.Matches(input, pattern))
+                    {
+                        TextBoxLab6.Text += "На позиции: " + m.Index + " найдено число не заканчивающееся на 0: " + m.Value + '\n';
+                    }
+                }
+                public void ValidatePyComments(string input)
+                {
+                    string pattern = @"#.*";
+                    Regex regex = new Regex(pattern);
+
+                    foreach (Match m in Regex.Matches(input, pattern))
+                    {
+                        TextBoxLab6.Text += "На позиции: " + m.Index + " найден однострочный комментарий python: " + m.Value + '\n';
+                    }
+                }
+                public void ValidateRusCarsNumbers(string input)
+                {
+                    string pattern = @"^[АВЕКМНОРСТУХ]{1}(?!000)\d{3}[АВЕКМНОРСТУХ]{2}" +
+                                     "(0[1-9]|[1-7][0-9]|8[0-9]|9[0-1]|102|702|113|116|716|121|93|123|193|" +
+                                     "124|125|126|134|136|138|91|139|142|147|90|150|190|750|790|550|" +
+                                     "152|252|154|156|159|161|761|163|763|164|96|196|173|174|97|99|" +
+                                     "177|197|199|777|797|799|977|98|178|198|186|94)$";
+
+                    Regex regex = new Regex(pattern);
+
+                    RegexOptions options = RegexOptions.Multiline;
+
+                    foreach (Match m in Regex.Matches(input, pattern, options))
+                    {
+                        TextBoxLab6.Text += "На позиции: " + m.Index + " найден номер: " + m.Value +  '\n';
+                    }
+                }
+
+
+                public void PolishNotation(string text)
+                {
+                    try
+                    {
+                        PolishNotationCalculator calc = new PolishNotationCalculator(text);
+                        polishTextBox.Text = "";
+                        polishTextBox.Text += "Исходное выражение:\n" + text + "\n";
+                        polishTextBox.Text += "Арифметическое выражение в ПОЛИЗ:\n" + calc.postfixExpr + "\n";
+                        polishTextBox.Text += "Подсчитаное выражение:\nОтвет: " + calc.Calc();
+                    } catch (Exception ex)
+                    {
+                        polishTextBox.Text = ex.Message;
+                    }
+                }
+                public void StartParse(string text)
+                {
+                    ParserDataGrid.Rows.Clear();
+                    Parser parser = new Parser(text);
+                    parser.Parse(text);
+                    _incorrectLexemes = parser.Errors;
+                    for (int i = 0; i < parser.Errors.Count; i++)
+                    {
+                        ParserDataGrid.Rows.Add(i + 1, parser.Errors[i].Position, parser.Errors[i].Message);
+                    }
+                    if (parser.Errors.Count == 0)
+                    {
+                        MessageBox.Show("Ошибок не обнаружено!");
+                    }
+                }
+
+                public void Lexer(string text)
+                {
+                    LexerDataGrid.Rows.Clear();
+                    List<Lexeme> lexemes = new List<Lexeme>();
+                    LexicalAnalyzer analyzer = new LexicalAnalyzer();
+                    lexemes = analyzer.Analyze(text);
+                    for (int i = 0; i < lexemes.Count; i++)
+                    {
+                        LexerDataGrid.Rows.Add(i + 1, lexemes[i].LexemeId, lexemes[i].LexemeName, lexemes[i].Value, lexemes[i].Position);
+                    }
+                }
+        */
+
         private void info_Click(object sender, EventArgs e)
         {
             if (System.IO.File.Exists(filePath))
@@ -305,6 +323,95 @@ namespace WinFormsApp1
         {
             if (_incorrectLexemes.Count > 0)
                 input.Text = TextCleaner.RemoveIncorrectLexemes(input.Text, _incorrectLexemes);
+
+        }
+
+        private void пускToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ParserDataGrid.Rows.Clear();
+            LexicalAnalyzer analyzer = new LexicalAnalyzer();
+            ReqParser reqParser = new ReqParser();
+            reqParser.Input = input.Text;
+            reqParser.Parse(analyzer.Analyze(input.Text));
+
+            for (int i = 0; i < reqParser.Errors.Count; i++)
+            {
+                ParserDataGrid.Rows.Add(i + 1, reqParser.Errors[i].Position, reqParser.Errors[i].Message);
+            }
+            if (reqParser.Errors.Count == 0)
+            {
+                MessageBox.Show("Ошибок не обнаружено!");
+            }
+        }
+
+        private void Task_Click(object sender, EventArgs e)
+        {
+            if (System.IO.File.Exists(TaskFile))
+            {
+                Process p = new Process();
+                p.StartInfo = new ProcessStartInfo(TaskFile) { UseShellExecute = true };
+                p.Start();
+            }
+
+        }
+
+        private void Grammar_Click(object sender, EventArgs e)
+        {
+            if (System.IO.File.Exists(GrammarFile))
+            {
+                Process p = new Process();
+                p.StartInfo = new ProcessStartInfo(GrammarFile) { UseShellExecute = true };
+                p.Start();
+            }
+
+        }
+
+        private void ClassificationGrammar_Click(object sender, EventArgs e)
+        {
+            if (System.IO.File.Exists(ClassificationGrammarFile))
+            {
+                Process p = new Process();
+                p.StartInfo = new ProcessStartInfo(ClassificationGrammarFile) { UseShellExecute = true };
+                p.Start();
+            }
+
+        }
+
+        private void AnalyzeMethod_Click(object sender, EventArgs e)
+        {
+            if (System.IO.File.Exists(AnalyzeMethodFile))
+            {
+                Process p = new Process();
+                p.StartInfo = new ProcessStartInfo(AnalyzeMethodFile) { UseShellExecute = true };
+                p.Start();
+            }
+
+        }
+
+        private void Example_Click(object sender, EventArgs e)
+        {
+            input.Text = "const double PI = 3.14; \nconst double name_1 = 34;";
+        }
+
+        private void Literature_Click(object sender, EventArgs e)
+        {
+            if (System.IO.File.Exists(LiteratureFile))
+            {
+                Process p = new Process();
+                p.StartInfo = new ProcessStartInfo(LiteratureFile) { UseShellExecute = true };
+                p.Start();
+            }
+
+        }
+
+        private void Code_Click(object sender, EventArgs e)
+        {
+            if (System.IO.File.Exists(CodeFile))
+            {
+                Process p = new Process();
+                p.StartInfo = new ProcessStartInfo(CodeFile) { UseShellExecute = true };
+                p.Start();
+            }
 
         }
     }

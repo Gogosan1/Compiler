@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Грамматика</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Грамматика</h1>
+    <div class="grammar">
+        G[&lt;ЦК&gt; = &lt;целочисленная константа&gt;]:<br>
+        V<sub>T</sub> = { ‘const ’, ‘double ’, ‘a’…’z’, ‘A’…’Z’, ‘0’…’9’, ‘.’, ‘=’, ‘+’, ‘-‘, ‘;’, ‘_’ }<br>
+        V<sub>N</sub> = { &lt;CONST&gt;, , DOUBLE, NAME, NAMEREM, NUMBER, INT, INTREM, DECIMAL, DECIMALREM, END, letter, digit }<br>
+        P = { <br />
+        &emsp;1. &lt;CONST&gt; → ‘const’ DOUBLE <br />
+        &emsp;2. DOUBLE → 'double ' NAME <br />
+        &emsp;3. NAME → letter NAMEREM <br />
+        &emsp;4. NAMEREM → letter NAMEREM | '=' NUMBER <br />
+        &emsp;5. NUMBER → ['+'|'-'] INT <br />
+        &emsp;7. INT → digit INTREM <br />
+        &emsp;8. INTREM → digit INTREM | '.' DECIMAL | ';' <br />
+        &emsp;9. DECIMAL → digit DECIMALREM <br />
+        &emsp;10. DECIMALREM → digit DECIMALREM | ';' <br />
+        &emsp;11. letter → ‘a’ | ‘b’ | … | ‘z’ | ‘A’ | ‘B’ | … | ‘Z’ <br />
+        &emsp;12. digit → ‘0’ | ‘1’ | … | ‘9’ <br />
+        }
+    </div>
+
+</body>
+</html>

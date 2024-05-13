@@ -45,14 +45,13 @@
             удалитьToolStripMenuItem = new ToolStripMenuItem();
             выделитьToolStripMenuItem = new ToolStripMenuItem();
             текстToolStripMenuItem = new ToolStripMenuItem();
-            постановкаЗадачиToolStripMenuItem = new ToolStripMenuItem();
-            грамматикаToolStripMenuItem = new ToolStripMenuItem();
-            классификацияГрамматикиToolStripMenuItem = new ToolStripMenuItem();
-            методToolStripMenuItem = new ToolStripMenuItem();
-            диагностикаИНейтрализацияОшибокToolStripMenuItem = new ToolStripMenuItem();
-            тестовыйПримерToolStripMenuItem = new ToolStripMenuItem();
-            списокЛитературыToolStripMenuItem = new ToolStripMenuItem();
-            исходныйКодПрограммыToolStripMenuItem = new ToolStripMenuItem();
+            Task = new ToolStripMenuItem();
+            Grammar = new ToolStripMenuItem();
+            ClassificationGrammar = new ToolStripMenuItem();
+            AnalyzeMethod = new ToolStripMenuItem();
+            Example = new ToolStripMenuItem();
+            Literature = new ToolStripMenuItem();
+            Code = new ToolStripMenuItem();
             пускToolStripMenuItem = new ToolStripMenuItem();
             справкаToolStripMenuItem = new ToolStripMenuItem();
             вызовСправкиToolStripMenuItem = new ToolStripMenuItem();
@@ -79,19 +78,6 @@
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            scanner = new TabPage();
-            LexerDataGrid = new DataGridView();
-            number = new DataGridViewTextBoxColumn();
-            code = new DataGridViewTextBoxColumn();
-            typeOfLexeme = new DataGridViewTextBoxColumn();
-            lexeme = new DataGridViewTextBoxColumn();
-            placement = new DataGridViewTextBoxColumn();
-            tabPage2 = new TabPage();
-            polishTextBox = new RichTextBox();
-            lab6 = new TabPage();
-            lab7 = new TabPage();
-            TextBoxLab6 = new RichTextBox();
-            TextBoxLab7 = new RichTextBox();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -103,11 +89,6 @@
             tabControl2.SuspendLayout();
             parser1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ParserDataGrid).BeginInit();
-            scanner.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)LexerDataGrid).BeginInit();
-            tabPage2.SuspendLayout();
-            lab6.SuspendLayout();
-            lab7.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -220,65 +201,66 @@
             // 
             // текстToolStripMenuItem
             // 
-            текстToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { постановкаЗадачиToolStripMenuItem, грамматикаToolStripMenuItem, классификацияГрамматикиToolStripMenuItem, методToolStripMenuItem, диагностикаИНейтрализацияОшибокToolStripMenuItem, тестовыйПримерToolStripMenuItem, списокЛитературыToolStripMenuItem, исходныйКодПрограммыToolStripMenuItem });
+            текстToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { Task, Grammar, ClassificationGrammar, AnalyzeMethod, Example, Literature, Code });
             текстToolStripMenuItem.Name = "текстToolStripMenuItem";
             текстToolStripMenuItem.Size = new Size(59, 24);
             текстToolStripMenuItem.Text = "Текст";
             // 
-            // постановкаЗадачиToolStripMenuItem
+            // Task
             // 
-            постановкаЗадачиToolStripMenuItem.Name = "постановкаЗадачиToolStripMenuItem";
-            постановкаЗадачиToolStripMenuItem.Size = new Size(363, 26);
-            постановкаЗадачиToolStripMenuItem.Text = "Постановка задачи";
+            Task.Name = "Task";
+            Task.Size = new Size(288, 26);
+            Task.Text = "Постановка задачи";
+            Task.Click += Task_Click;
             // 
-            // грамматикаToolStripMenuItem
+            // Grammar
             // 
-            грамматикаToolStripMenuItem.Name = "грамматикаToolStripMenuItem";
-            грамматикаToolStripMenuItem.Size = new Size(363, 26);
-            грамматикаToolStripMenuItem.Text = "Грамматика";
+            Grammar.Name = "Grammar";
+            Grammar.Size = new Size(288, 26);
+            Grammar.Text = "Грамматика";
+            Grammar.Click += Grammar_Click;
             // 
-            // классификацияГрамматикиToolStripMenuItem
+            // ClassificationGrammar
             // 
-            классификацияГрамматикиToolStripMenuItem.Name = "классификацияГрамматикиToolStripMenuItem";
-            классификацияГрамматикиToolStripMenuItem.Size = new Size(363, 26);
-            классификацияГрамматикиToolStripMenuItem.Text = "Классификация грамматики";
+            ClassificationGrammar.Name = "ClassificationGrammar";
+            ClassificationGrammar.Size = new Size(288, 26);
+            ClassificationGrammar.Text = "Классификация грамматики";
+            ClassificationGrammar.Click += ClassificationGrammar_Click;
             // 
-            // методToolStripMenuItem
+            // AnalyzeMethod
             // 
-            методToolStripMenuItem.Name = "методToolStripMenuItem";
-            методToolStripMenuItem.Size = new Size(363, 26);
-            методToolStripMenuItem.Text = "Метод анализа";
+            AnalyzeMethod.Name = "AnalyzeMethod";
+            AnalyzeMethod.Size = new Size(288, 26);
+            AnalyzeMethod.Text = "Метод анализа";
+            AnalyzeMethod.Click += AnalyzeMethod_Click;
             // 
-            // диагностикаИНейтрализацияОшибокToolStripMenuItem
+            // Example
             // 
-            диагностикаИНейтрализацияОшибокToolStripMenuItem.Name = "диагностикаИНейтрализацияОшибокToolStripMenuItem";
-            диагностикаИНейтрализацияОшибокToolStripMenuItem.Size = new Size(363, 26);
-            диагностикаИНейтрализацияОшибокToolStripMenuItem.Text = "Диагностика и нейтрализация ошибок";
-            диагностикаИНейтрализацияОшибокToolStripMenuItem.Click += cleanErrors;
+            Example.Name = "Example";
+            Example.Size = new Size(288, 26);
+            Example.Text = "Тестовый пример";
+            Example.Click += Example_Click;
             // 
-            // тестовыйПримерToolStripMenuItem
+            // Literature
             // 
-            тестовыйПримерToolStripMenuItem.Name = "тестовыйПримерToolStripMenuItem";
-            тестовыйПримерToolStripMenuItem.Size = new Size(363, 26);
-            тестовыйПримерToolStripMenuItem.Text = "Тестовый пример";
+            Literature.Name = "Literature";
+            Literature.Size = new Size(288, 26);
+            Literature.Text = "Список литературы";
+            Literature.Click += Literature_Click;
             // 
-            // списокЛитературыToolStripMenuItem
+            // Code
             // 
-            списокЛитературыToolStripMenuItem.Name = "списокЛитературыToolStripMenuItem";
-            списокЛитературыToolStripMenuItem.Size = new Size(363, 26);
-            списокЛитературыToolStripMenuItem.Text = "Список литературы";
-            // 
-            // исходныйКодПрограммыToolStripMenuItem
-            // 
-            исходныйКодПрограммыToolStripMenuItem.Name = "исходныйКодПрограммыToolStripMenuItem";
-            исходныйКодПрограммыToolStripMenuItem.Size = new Size(363, 26);
-            исходныйКодПрограммыToolStripMenuItem.Text = "Исходный код программы";
+            Code.Name = "Code";
+            Code.Size = new Size(288, 26);
+            Code.Text = "Исходный код программы";
+            Code.Click += Code_Click;
             // 
             // пускToolStripMenuItem
             // 
             пускToolStripMenuItem.Name = "пускToolStripMenuItem";
             пускToolStripMenuItem.Size = new Size(55, 24);
             пускToolStripMenuItem.Text = "Пуск";
+            пускToolStripMenuItem.Click += пускToolStripMenuItem_Click;
             // 
             // справкаToolStripMenuItem
             // 
@@ -444,6 +426,7 @@
             // input
             // 
             input.Dock = DockStyle.Fill;
+            input.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
             input.Location = new Point(3, 3);
             input.Name = "input";
             input.Size = new Size(970, 182);
@@ -473,10 +456,6 @@
             // tabControl2
             // 
             tabControl2.Controls.Add(parser1);
-            tabControl2.Controls.Add(scanner);
-            tabControl2.Controls.Add(tabPage2);
-            tabControl2.Controls.Add(lab6);
-            tabControl2.Controls.Add(lab7);
             tabControl2.Dock = DockStyle.Fill;
             tabControl2.Location = new Point(0, 0);
             tabControl2.Name = "tabControl2";
@@ -530,124 +509,6 @@
             dataGridViewTextBoxColumn3.MinimumWidth = 6;
             dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
-            // scanner
-            // 
-            scanner.Controls.Add(LexerDataGrid);
-            scanner.Location = new Point(4, 29);
-            scanner.Name = "scanner";
-            scanner.Padding = new Padding(3);
-            scanner.Size = new Size(976, 189);
-            scanner.TabIndex = 1;
-            scanner.Text = "Сканер";
-            scanner.UseVisualStyleBackColor = true;
-            // 
-            // LexerDataGrid
-            // 
-            LexerDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            LexerDataGrid.Columns.AddRange(new DataGridViewColumn[] { number, code, typeOfLexeme, lexeme, placement });
-            LexerDataGrid.Dock = DockStyle.Fill;
-            LexerDataGrid.Location = new Point(3, 3);
-            LexerDataGrid.Name = "LexerDataGrid";
-            LexerDataGrid.RowHeadersWidth = 51;
-            LexerDataGrid.Size = new Size(970, 183);
-            LexerDataGrid.TabIndex = 0;
-            // 
-            // number
-            // 
-            number.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            number.HeaderText = "№";
-            number.MinimumWidth = 6;
-            number.Name = "number";
-            // 
-            // code
-            // 
-            code.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            code.HeaderText = "условный код";
-            code.MinimumWidth = 6;
-            code.Name = "code";
-            // 
-            // typeOfLexeme
-            // 
-            typeOfLexeme.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            typeOfLexeme.HeaderText = "тип лексемы";
-            typeOfLexeme.MinimumWidth = 6;
-            typeOfLexeme.Name = "typeOfLexeme";
-            // 
-            // lexeme
-            // 
-            lexeme.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            lexeme.HeaderText = "лексема";
-            lexeme.MinimumWidth = 6;
-            lexeme.Name = "lexeme";
-            // 
-            // placement
-            // 
-            placement.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            placement.HeaderText = "расположение";
-            placement.MinimumWidth = 6;
-            placement.Name = "placement";
-            // 
-            // tabPage2
-            // 
-            tabPage2.Controls.Add(polishTextBox);
-            tabPage2.Location = new Point(4, 29);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Size = new Size(976, 189);
-            tabPage2.TabIndex = 2;
-            tabPage2.Text = "Польская нотация";
-            tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // polishTextBox
-            // 
-            polishTextBox.Dock = DockStyle.Fill;
-            polishTextBox.Location = new Point(0, 0);
-            polishTextBox.Name = "polishTextBox";
-            polishTextBox.ReadOnly = true;
-            polishTextBox.Size = new Size(976, 189);
-            polishTextBox.TabIndex = 0;
-            polishTextBox.Text = "";
-            // 
-            // lab6
-            // 
-            lab6.AccessibleRole = AccessibleRole.OutlineButton;
-            lab6.Controls.Add(TextBoxLab6);
-            lab6.Location = new Point(4, 29);
-            lab6.Name = "lab6";
-            lab6.Size = new Size(976, 189);
-            lab6.TabIndex = 3;
-            lab6.Text = "Регулярные выражения";
-            lab6.UseVisualStyleBackColor = true;
-            // 
-            // lab7
-            // 
-            lab7.Controls.Add(TextBoxLab7);
-            lab7.Location = new Point(4, 29);
-            lab7.Name = "lab7";
-            lab7.Size = new Size(976, 189);
-            lab7.TabIndex = 4;
-            lab7.Text = "lab7";
-            lab7.UseVisualStyleBackColor = true;
-            // 
-            // TextBoxLab6
-            // 
-            TextBoxLab6.Dock = DockStyle.Fill;
-            TextBoxLab6.Location = new Point(0, 0);
-            TextBoxLab6.Name = "TextBoxLab6";
-            TextBoxLab6.ReadOnly = true;
-            TextBoxLab6.Size = new Size(976, 189);
-            TextBoxLab6.TabIndex = 0;
-            TextBoxLab6.Text = "";
-            // 
-            // TextBoxLab7
-            // 
-            TextBoxLab7.Dock = DockStyle.Fill;
-            TextBoxLab7.Location = new Point(0, 0);
-            TextBoxLab7.Name = "TextBoxLab7";
-            TextBoxLab7.ReadOnly = true;
-            TextBoxLab7.Size = new Size(976, 189);
-            TextBoxLab7.TabIndex = 0;
-            TextBoxLab7.Text = "";
-            // 
             // Compiler
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -674,11 +535,6 @@
             tabControl2.ResumeLayout(false);
             parser1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ParserDataGrid).EndInit();
-            scanner.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)LexerDataGrid).EndInit();
-            tabPage2.ResumeLayout(false);
-            lab6.ResumeLayout(false);
-            lab7.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -701,14 +557,13 @@
         private ToolStripMenuItem удалитьToolStripMenuItem;
         private ToolStripMenuItem выделитьToolStripMenuItem;
         private ToolStripMenuItem текстToolStripMenuItem;
-        private ToolStripMenuItem постановкаЗадачиToolStripMenuItem;
-        private ToolStripMenuItem грамматикаToolStripMenuItem;
-        private ToolStripMenuItem классификацияГрамматикиToolStripMenuItem;
-        private ToolStripMenuItem методToolStripMenuItem;
-        private ToolStripMenuItem диагностикаИНейтрализацияОшибокToolStripMenuItem;
-        private ToolStripMenuItem тестовыйПримерToolStripMenuItem;
-        private ToolStripMenuItem списокЛитературыToolStripMenuItem;
-        private ToolStripMenuItem исходныйКодПрограммыToolStripMenuItem;
+        private ToolStripMenuItem Task;
+        private ToolStripMenuItem Grammar;
+        private ToolStripMenuItem ClassificationGrammar;
+        private ToolStripMenuItem AnalyzeMethod;
+        private ToolStripMenuItem Example;
+        private ToolStripMenuItem Literature;
+        private ToolStripMenuItem Code;
         private ToolStripMenuItem пускToolStripMenuItem;
         private ToolStripMenuItem справкаToolStripMenuItem;
         private ToolStripMenuItem вызовСправкиToolStripMenuItem;
@@ -729,24 +584,11 @@
         private TabPage tabPage1;
         private RichTextBox input;
         private SplitContainer splitContainer1;
-        private DataGridView LexerDataGrid;
-        private DataGridViewTextBoxColumn number;
-        private DataGridViewTextBoxColumn code;
-        private DataGridViewTextBoxColumn typeOfLexeme;
-        private DataGridViewTextBoxColumn lexeme;
-        private DataGridViewTextBoxColumn placement;
         private TabControl tabControl2;
         private TabPage parser1;
-        private TabPage scanner;
         private DataGridView ParserDataGrid;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private TabPage tabPage2;
-        private RichTextBox polishTextBox;
-        private TabPage lab6;
-        private TabPage lab7;
-        private RichTextBox TextBoxLab6;
-        private RichTextBox TextBoxLab7;
     }
 }
